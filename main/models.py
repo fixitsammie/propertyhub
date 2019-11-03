@@ -11,11 +11,12 @@ def user_directory_path(instance, filename):
 
 class Location(models.Model):
     name = models.CharField(max_length=30)
-
+    def __str__(self):
+        return self.name
 class Property(models.Model):
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=100)
     place = models.ForeignKey('Location',on_delete=models.CASCADE)
-    image=models.ImageField(upload_to='img')
+    image=models.ImageField(upload_to='img',blank=True,null=True)
     filename=models.SlugField(max_length=30)
     cost=models.IntegerField()
     property_type= models.CharField(max_length=15, choices=PROPERTY_TYPES)
