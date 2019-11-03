@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if property %}
+
+
+{% for result in property %}
+
+
+
+<div class="col-sm-3">
+ 
+  <img class="" src="/static/img/2.jpg" alt="Card image cap">
+ 
+    
+    
+
+</div> 
+
+
+
+<div class="col-sm-9">
+
+
+<p>{{ result.name }}  </p>
+<p>Location: {{ result.place.name }}  </p>
+<p>Price: NGN {{result.cost}}   </p>
+</div>
+{% endfor %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if property.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ property.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ property.number }} of {{ property.paginator.num_pages }}.
+        </span>
+
+        {% if property.has_next %}
+            <a href="?page={{ property.next_page_number }}">next</a>
+            <a href="?page={{ property.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% else %}
+<p></p>
+{% endif %}
+{% endblock content %}
